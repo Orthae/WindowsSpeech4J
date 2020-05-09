@@ -1,0 +1,6 @@
+*.iml
+java/.idea/*
+cpp/.idea/*
+cpp/cmake-build-debug/*
+.idea/*
+
