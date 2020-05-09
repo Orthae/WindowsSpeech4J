@@ -5,15 +5,17 @@
 #include <sapi.h>
 #include <sphelper.h>
 #include <mutex>
+#include "DriverUtility.h"
 
 class SpeechDriver {
 private:
+    DriverUtility * utility;
     static SpeechDriver * instance;
     static std::mutex mutex;
     SpeechDriver();
     ~SpeechDriver();
-    ISpVoice * spVoice{};
+    ISpVoice * spVoice;
 public:
     static SpeechDriver * getInstance();
-    void initialize();
+    void initialize(JNIEnv * env, jobject object);
 };
