@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.core.config.DefaultConfiguration;
 import orthae.com.github.windowsspeech4j.SpeechDriverAdapter;
+import orthae.com.github.windowsspeech4j.WindowsSpeech4J;
+import orthae.com.github.windowsspeech4j.exception.SpeechDriverException;
 
 import java.nio.file.Paths;
 
@@ -17,12 +19,15 @@ public class App
 {
     public static void main( String[] args )
     {
-        Logger logger = LogManager.getLogger();
         Configurator.initialize(new DefaultConfiguration());
         Configurator.setRootLevel(Level.INFO);
-        logger.info("This is my first log4j's statement");
-        System.load(Paths.get("WindowsSpeech4J.dll").toAbsolutePath().toString());
+
         SpeechDriverAdapter adapter = new SpeechDriverAdapter();
-        adapter.initialize();
+        try {
+            WindowsSpeech4J speech4J = new WindowsSpeech4J(adapter);
+            speech4J.speak("test");
+        } catch (SpeechDriverException e){
+            System.out.println("Type is " + e.getType());
+        }
     }
 }

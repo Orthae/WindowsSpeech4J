@@ -1,6 +1,5 @@
 #ifndef CPP_SPEECHDRIVER_H
 #define CPP_SPEECHDRIVER_H
-#endif
 
 #include <sapi.h>
 #include <sphelper.h>
@@ -12,10 +11,14 @@ private:
     DriverUtility * utility;
     static SpeechDriver * instance;
     static std::mutex mutex;
+    JNIEnv * env;
     SpeechDriver();
     ~SpeechDriver();
     ISpVoice * spVoice;
 public:
     static SpeechDriver * getInstance();
     void initialize(JNIEnv * env, jobject object);
+    void speak(jstring text);
 };
+
+#endif

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class SpeechDriverAdapter {
 
-  private final Logger logger;
+  protected Logger logger;
 
   public SpeechDriverAdapter(){
     logger = LogManager.getLogger("SpeechDriver");
@@ -26,4 +26,5 @@ public class SpeechDriverAdapter {
 
   public native void initialize();
 
+  public native void speak(String text);
 }

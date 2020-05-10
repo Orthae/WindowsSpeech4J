@@ -7,5 +7,8 @@ add_library(WindowsSpeech4J SHARED
             src/SpeechDriver.cpp
             src/SpeechDriver.h
             src/SpeechDriverAdapter.cpp
-        src/DriverUtility.cpp
-        src/DriverUtility.h src/Constants.h)
+            src/DriverUtility.cpp
+            src/DriverUtility.h
+            src/Constants.h
+            src/ExceptionUtility.cpp
+            src/ExceptionUtility.h src/StringUtility.cpp src/StringUtility.h)

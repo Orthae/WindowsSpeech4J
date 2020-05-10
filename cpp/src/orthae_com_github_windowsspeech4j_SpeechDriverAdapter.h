@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_initialize
   (JNIEnv *, jobject);
 
+/*
+ * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
+ * Method:    speak
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_speak
+  (JNIEnv *, jobject, jstring);
+
 #ifdef __cplusplus
 }
 #endif
