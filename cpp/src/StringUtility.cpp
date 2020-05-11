@@ -1,14 +1,16 @@
+#include <string>
 #include "StringUtility.h"
 
 StringUtility::StringUtility(JNIEnv *env) {
   this->env = env;
 }
 
-wchar_t *StringUtility::convertString(jstring string) {
-  size_t returnedValue;
-  auto source = env->GetStringUTFChars(string, nullptr);
-  size_t length = strlen(source) + 1;
-  wchar_t *destination = new wchar_t[length];
-  mbstowcs_s(&returnedValue, destination, length, source, length);
-  return destination;
+std::wstring StringUtility::convertString(jstring javaString) {
+  std::wstring cppString;
+  const jchar* javaChars = env->GetStringChars(javaString, nullptr);
+
+  jsize stringLength = env->GetStringLength(javaString);
+  cppString.assign(javaChars, javaChars + stringLength);
+  env->ReleaseStringChars(javaString, javaChars);
+  return cppString;
 }

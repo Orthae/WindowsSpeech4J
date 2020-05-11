@@ -16,8 +16,8 @@ void DriverUtility::throwException(int exceptionType, std::string const &message
   exceptionUtility->throwException(exceptionType, message);
 }
 
-wchar_t *DriverUtility::convertString(jstring string) {
-  return stringUtility->convertString(string);
+std::wstring DriverUtility::convertString(jstring javaString) {
+  return stringUtility->convertString(javaString);
 }
 
 void DriverUtility::error(std::string const &message) {

@@ -11,7 +11,7 @@ class StringUtility {
   JNIEnv *env;
  public:
   StringUtility(JNIEnv *env);
-  wchar_t *convertString(jstring string);
+  std::wstring convertString(jstring javaString);
 };
 
 #endif

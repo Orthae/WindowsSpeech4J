@@ -41,10 +41,9 @@ void SpeechDriver::initialize(JNIEnv *env, jobject object) {
   HRESULT instance = CoCreateInstance(CLSID_SpVoice, nullptr, CLSCTX_ALL, IID_ISpVoice, (void **)&spVoice);
 }
 
-void SpeechDriver::speak(jstring text) {
-  auto textToSpeech = utility->convertString(text);
-  spVoice->Speak(textToSpeech, SVSFDefault, nullptr);
-  delete textToSpeech;
+void SpeechDriver::speak(jstring textToSpeak) {
+  auto convertedText = utility->convertString(textToSpeak);
+  spVoice->Speak(convertedText.c_str(), SVSFDefault, nullptr);
 }
 
 SpeechDriver::SpeechDriver() = default;

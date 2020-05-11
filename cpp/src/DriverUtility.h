@@ -21,7 +21,7 @@ class DriverUtility {
   void warn(std::string const &message);
   void error(std::string const &message);
   void throwException(int exceptionType, const std::string &message);
-  wchar_t *convertString(jstring string);
+  std::wstring convertString(jstring javaString);
 };
 
 #endif

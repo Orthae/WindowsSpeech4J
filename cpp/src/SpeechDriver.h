@@ -18,7 +18,7 @@ class SpeechDriver {
  public:
   static SpeechDriver *getInstance();
   void initialize(JNIEnv *env, jobject object);
-  void speak(jstring text);
+  void speak(jstring textToSpeak);
 };
 
 #endif

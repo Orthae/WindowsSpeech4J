@@ -21,4 +21,4 @@ add_library(WindowsSpeech4J SHARED
             src/ExceptionUtility.cpp
             src/ExceptionUtility.h
             src/StringUtility.cpp
-            src/StringUtility.h)
+            src/StringUtility.h src/LoggerUtility.cpp src/LoggerUtility.h)
