@@ -7,12 +7,11 @@
 #include <stdlib.h>
 
 class StringUtility {
-private:
-    JNIEnv * env;
-public:
-    StringUtility(JNIEnv * env);
-    wchar_t * convertString(jstring string);
+ private:
+  JNIEnv *env;
+ public:
+  StringUtility(JNIEnv *env);
+  wchar_t *convertString(jstring string);
 };
-
 
 #endif

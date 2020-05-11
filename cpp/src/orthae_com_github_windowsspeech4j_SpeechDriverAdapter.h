@@ -13,7 +13,7 @@ extern "C" {
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_initialize
-  (JNIEnv *, jobject);
+	(JNIEnv *, jobject);
 
 /*
  * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
@@ -21,7 +21,7 @@ JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapte
  * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_speak
-  (JNIEnv *, jobject, jstring);
+	(JNIEnv *, jobject, jstring);
 
 #ifdef __cplusplus
 }
