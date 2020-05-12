@@ -3,17 +3,16 @@
 
 #include <jni.h>
 #include <string>
-#include "ExceptionUtility.h"
 #include "Constants.h"
+#include "ExceptionUtility.h"
 #include "StringUtility.h"
+#include "LoggerUtility.h"
 
 class DriverUtility {
  private:
   ExceptionUtility *exceptionUtility;
   StringUtility *stringUtility;
-  JNIEnv *env;
-  jobject object;
-  jclass clazz;
+  LoggerUtility *loggerUtility;
  public:
   DriverUtility(JNIEnv *env, jobject object);
   ~DriverUtility();
