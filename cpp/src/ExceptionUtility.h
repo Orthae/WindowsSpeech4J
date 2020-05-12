@@ -3,6 +3,7 @@
 
 #include <jni.h>
 #include <string>
+#include "DriverException.h"
 #include "Constants.h"
 
 class ExceptionUtility {
@@ -11,10 +12,10 @@ class ExceptionUtility {
   jclass exceptionClass;
   jmethodID exceptionConstructor;
  protected:
-  jthrowable prepareException(int exceptionType, const std::string &message);
+  jthrowable createJavaException(DriverException const &exception);
  public:
   explicit ExceptionUtility(JNIEnv *env);
-  void throwException(int errorType, const std::string &message);
+  void throwException(DriverException const &exception);
 };
 
 #endif

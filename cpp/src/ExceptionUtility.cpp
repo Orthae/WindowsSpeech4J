@@ -8,16 +8,14 @@ ExceptionUtility::ExceptionUtility(JNIEnv *env) {
 					   Constants::EXCEPTION_CONSTRUCTOR_SIGNATURE.c_str());
 }
 
-jthrowable ExceptionUtility::prepareException(int exceptionType,
-											  const std::string &message) {
-  jstring exceptionMessage = env->NewStringUTF(message.c_str());
+jthrowable ExceptionUtility::createJavaException(DriverException const &exception) {
+  jstring exceptionMessage = env->NewStringUTF(exception.getMessage().c_str());
   auto trowObj = (jthrowable)env->NewObject(
-	  exceptionClass, exceptionConstructor, exceptionType, exceptionMessage);
+	  exceptionClass, exceptionConstructor, exception.getType(), exceptionMessage);
   return trowObj;
 }
 
-void ExceptionUtility::throwException(int exceptionType,
-									  const std::string &message) {
-  jthrowable exception = prepareException(exceptionType, message);
-  env->Throw(exception);
+void ExceptionUtility::throwException(DriverException const &exception) {
+  jthrowable javaException = createJavaException(exception);
+  env->Throw(javaException);
 }

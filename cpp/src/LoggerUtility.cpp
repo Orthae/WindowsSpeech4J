@@ -3,7 +3,7 @@
 LoggerUtility::LoggerUtility(JNIEnv *env, jobject object) {
   this->env = env;
   this->object = object;
-  this->clazz = env->GetObjectClass(object)
+  this->clazz = env->GetObjectClass(object);
 }
 
 void LoggerUtility::error(std::string const &message) {

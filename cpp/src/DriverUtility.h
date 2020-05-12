@@ -7,6 +7,7 @@
 #include "ExceptionUtility.h"
 #include "StringUtility.h"
 #include "LoggerUtility.h"
+#include "DriverException.h"
 
 class DriverUtility {
  private:
@@ -19,7 +20,7 @@ class DriverUtility {
   void info(std::string const &message);
   void warn(std::string const &message);
   void error(std::string const &message);
-  void throwException(int exceptionType, const std::string &message);
+  void throwException(DriverException const &exception);
   std::wstring convertString(jstring javaString);
 };
 

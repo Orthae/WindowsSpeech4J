@@ -10,8 +10,8 @@ DriverUtility::~DriverUtility() {
   delete this->stringUtility;
 }
 
-void DriverUtility::throwException(int exceptionType, std::string const &message) {
-  exceptionUtility->throwException(exceptionType, message);
+void DriverUtility::throwException(DriverException const &exception) {
+  exceptionUtility->throwException(exception);
 }
 
 std::wstring DriverUtility::convertString(jstring javaString) {

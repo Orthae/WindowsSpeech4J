@@ -16,6 +16,26 @@ class Constants {
 	  "(Ljava/lang/String;)V"};
   static inline std::string const ADAPTER_LOG_ERROR_NAME{"error"};
 
+  //Logger messages
+  static inline std::string const INITIALIZE_SUCCESS{"COM interface has been initialized."};
+  static inline std::string const INITIALIZE_ALREADY{"COM interface was already initialized."};
+  static inline std::string const
+	  INITIALIZE_INVALID{"COM interface received Invalid argument, this should not happen."};
+  static inline std::string const INITIALIZE_MEMORY{"System ran out the memory while initializing COM interface."};
+  static inline std::string const INITIALIZE_UNEXPECTED{
+	  "Encountered unexpected exception while initializing COM interface."};
+  static inline std::string const INITIALIZE_UNKNOWN{
+	  "Encountered unknown exception while initializing COM interface."};
+
+  static inline std::string const INSTANCE_SUCCESS{
+	  "Speech client had been created"};
+  static inline std::string const INSTANCE_NOT_FOUND{"Could not find speech client class in system registry."};
+  static inline std::string const INSTANCE_AGGREGATE{"Speech client cannot be created as aggregate."};
+  static inline std::string const INSTANCE_INTERFACE{"Speech client doesn't implements specified interface."};
+  static inline std::string const INSTANCE_NULL{"Passed null as client pointer, this should not happen."};
+  static inline std::string const
+	  INSTANCE_UNKNOWN{"Encountered unknown exception while creating speech client instance."};
+
   // Exception constants
   static inline std::string const EXCEPTION_CLASS{
 	  "orthae/com/github/windowsspeech4j/exception/SpeechDriverException"};
@@ -25,5 +45,8 @@ class Constants {
   static inline int const EXCEPTION_OUT_OF_MEMORY{1};
   static inline int const EXCEPTION_UNEXPECTED{2};
   static inline int const EXCEPTION_INVALID_ARGUMENT{3};
+  static inline int const EXCEPTION_NULL_ARGUMENT{4};
+  static inline int const EXCEPTION_CLASS_NOT_FOUND{5};
+  static inline int const EXCEPTION_CREATION_FAILED{6};
 };
 #endif
