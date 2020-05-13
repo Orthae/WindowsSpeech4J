@@ -13,7 +13,39 @@ extern "C" {
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_initialize
-	(JNIEnv *, jobject);
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
+ * Method:    setVolume
+ * Signature: (S)V
+ */
+JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_setVolume
+  (JNIEnv *, jobject, jshort);
+
+/*
+ * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
+ * Method:    getVolume
+ * Signature: ()S
+ */
+JNIEXPORT jshort JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_getVolume
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
+ * Method:    setRate
+ * Signature: (S)V
+ */
+JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_setRate
+  (JNIEnv *, jobject, jshort);
+
+/*
+ * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
+ * Method:    getRate
+ * Signature: ()S
+ */
+JNIEXPORT jshort JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_getRate
+  (JNIEnv *, jobject);
 
 /*
  * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
@@ -21,7 +53,7 @@ JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapte
  * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_speak
-	(JNIEnv *, jobject, jstring);
+  (JNIEnv *, jobject, jstring);
 
 #ifdef __cplusplus
 }

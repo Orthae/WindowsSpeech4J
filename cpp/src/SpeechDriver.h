@@ -20,6 +20,10 @@ class SpeechDriver {
   void handleCreateInstance(HRESULT result);
  public:
   static SpeechDriver *getInstance();
+  void setVolume(unsigned short volume);
+  unsigned short getVolume();
+  void setRate(short volume);
+  short getRate();
   void initialize(JNIEnv *env, jobject object);
   void speak(jstring textToSpeak);
 };

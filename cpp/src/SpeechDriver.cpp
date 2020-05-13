@@ -1,5 +1,7 @@
 #include "SpeechDriver.h"
 
+#include <iostream>
+
 SpeechDriver *SpeechDriver::instance{nullptr};
 std::mutex SpeechDriver::mutex;
 
@@ -31,7 +33,7 @@ void SpeechDriver::initialize(JNIEnv *env, jobject object) {
 	HRESULT instanceResult = CoCreateInstance(CLSID_SpVoice, nullptr, CLSCTX_ALL, IID_ISpVoice, (void **)&spVoice);
 	handleCreateInstance(instanceResult);
   } catch (DriverException &exception) {
-    utility->throwException(exception);
+	utility->throwException(exception);
   }
 }
 
@@ -53,7 +55,6 @@ void SpeechDriver::handleInitialize(HRESULT result) {
   }
 }
 
-
 /**
  * Handles result of creating speech client instance
  * @param result of creating speech client instance
@@ -62,6 +63,7 @@ void SpeechDriver::handleInitialize(HRESULT result) {
 void SpeechDriver::handleCreateInstance(HRESULT result) {
   switch (result) {
 	case S_OK: utility->info(Constants::INSTANCE_SUCCESS);
+	  return;
 	case REGDB_E_CLASSNOTREG:
 	  throw DriverException(Constants::EXCEPTION_CLASS_NOT_FOUND,
 							Constants::INSTANCE_NOT_FOUND);
@@ -74,11 +76,34 @@ void SpeechDriver::handleCreateInstance(HRESULT result) {
   }
 }
 
+void SpeechDriver::setVolume(unsigned short volume) {
+  HRESULT result = spVoice->SetVolume(volume);
+}
+
+unsigned short SpeechDriver::getVolume() {
+  unsigned short volume{0};
+  HRESULT result = spVoice->GetVolume(&volume);
+  return volume;
+}
+
+void SpeechDriver::setRate(short rate){
+  HRESULT result = spVoice->SetRate(rate);
+}
+
+short SpeechDriver::getRate() {
+  long rate{0};
+  HRESULT result = spVoice->GetRate(&rate);
+  return (short)rate;
+}
+
+
+
+
+
 void SpeechDriver::speak(jstring textToSpeak) {
   auto convertedText = utility->convertString(textToSpeak);
   spVoice->Speak(convertedText.c_str(), SVSFDefault, nullptr);
 }
-
 
 SpeechDriver::SpeechDriver() = default;
 
