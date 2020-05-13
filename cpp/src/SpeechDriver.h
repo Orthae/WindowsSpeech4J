@@ -5,6 +5,7 @@
 #include <sphelper.h>
 #include <mutex>
 #include "DriverUtility.h"
+#include "HandleUtility.h"
 
 class SpeechDriver {
  private:
@@ -15,9 +16,6 @@ class SpeechDriver {
   SpeechDriver();
   ~SpeechDriver();
   ISpVoice *spVoice;
- protected:
-  void handleInitialize(HRESULT result);
-  void handleCreateInstance(HRESULT result);
  public:
   static SpeechDriver *getInstance();
   void setVolume(unsigned short volume);

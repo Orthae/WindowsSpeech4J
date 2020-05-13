@@ -25,4 +25,6 @@ add_library(WindowsSpeech4J SHARED
         src/LoggerUtility.cpp
         src/LoggerUtility.h
         src/DriverException.cpp
-        src/DriverException.h)
+        src/DriverException.h
+        src/HandleUtility.cpp
+        src/HandleUtility.h)

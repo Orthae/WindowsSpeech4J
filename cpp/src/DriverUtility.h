@@ -3,8 +3,10 @@
 
 #include <jni.h>
 #include <string>
+#include <sapi.h>
 #include "Constants.h"
 #include "ExceptionUtility.h"
+#include "HandleUtility.h"
 #include "StringUtility.h"
 #include "LoggerUtility.h"
 #include "DriverException.h"
@@ -14,6 +16,7 @@ class DriverUtility {
   ExceptionUtility *exceptionUtility;
   StringUtility *stringUtility;
   LoggerUtility *loggerUtility;
+  HandleUtility *handleUtility;
  public:
   DriverUtility(JNIEnv *env, jobject object);
   ~DriverUtility();
@@ -22,6 +25,8 @@ class DriverUtility {
   void error(std::string const &message);
   void throwException(DriverException const &exception);
   std::wstring convertString(jstring javaString);
+  void handleInitialize(HRESULT result);
+  void handleCreateInstance(HRESULT result);
 };
 
 #endif

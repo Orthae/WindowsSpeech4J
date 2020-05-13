@@ -4,7 +4,9 @@ DriverUtility::DriverUtility(JNIEnv *env, jobject object) {
   this->exceptionUtility = new ExceptionUtility(env);
   this->stringUtility = new StringUtility(env);
   this->loggerUtility = new LoggerUtility(env, object);
+  this->handleUtility = new HandleUtility(loggerUtility);
 }
+
 DriverUtility::~DriverUtility() {
   delete this->exceptionUtility;
   delete this->stringUtility;
@@ -28,4 +30,12 @@ void DriverUtility::warn(std::string const &message) {
 
 void DriverUtility::info(std::string const &message) {
   loggerUtility->info(message);
+}
+
+void DriverUtility::handleInitialize(HRESULT result) {
+  handleUtility->handleInitialize(result);
+}
+
+void DriverUtility::handleCreateInstance(HRESULT result) {
+  handleUtility->handleCreateInstance(result);
 }
