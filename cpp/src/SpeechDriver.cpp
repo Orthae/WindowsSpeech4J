@@ -58,7 +58,47 @@ short SpeechDriver::getRate() {
   return (short)rate;
 }
 
+jobjectArray SpeechDriver::getVoices(){
+  std::vector<Voice> vector;
+  ISpObjectTokenCategory *spCategory{nullptr};
+  SpGetCategoryFromId(SPCAT_VOICES, &spCategory, FALSE);
+  IEnumSpObjectTokens *spEnumTokens{nullptr};
+  spCategory->EnumTokens(nullptr, nullptr, &spEnumTokens);
+  ISpObjectToken *objectToken;
+  while (S_OK == spEnumTokens->Next(1, &objectToken, nullptr)) {
+	ISpDataKey *regToken;
+	objectToken->OpenKey(L"Attributes", &regToken);
+	LPWSTR age;
+	regToken->GetStringValue(L"Age", &age);
+	LPWSTR gender;
+	regToken->GetStringValue(L"Gender", &gender);
+	LPWSTR languageCode;
+	regToken->GetStringValue(L"Language", &languageCode);
+	LPWSTR name;
+	regToken->GetStringValue(L"Name", &name);
+	LPWSTR sharedPronunciation;
+	regToken->GetStringValue(L"SharedPronunciation", &sharedPronunciation);
+	LPWSTR vendor;
+	regToken->GetStringValue(L"Vendor", &vendor);
+	LPWSTR version;
+	regToken->GetStringValue(L"Version", &version);
+	vector.emplace_back(Voice(age, gender, languageCode, name, sharedPronunciation, vendor, version, objectToken));
+	objectToken->Release();
+  }
+  this->voices = vector;
+  return utility->mapVoices(vector);
+}
 
+void SpeechDriver::setVoice(jobject jobject){
+  Voice voice = utility->mapVoice(jobject);
+  for(Voice &v : voices){
+    if(v.getHashCode() == voice.getHashCode() ){
+      spVoice->SetVoice(v.getVoiceToken());
+      return;
+    }
+  }
+  utility->warn("Voice not found");
+}
 
 void SpeechDriver::speak(jstring textToSpeak) {
   auto convertedText = utility->convertString(textToSpeak);

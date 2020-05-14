@@ -20,11 +20,13 @@ add_library(WindowsSpeech4J SHARED
         src/Constants.h
         src/ExceptionUtility.cpp
         src/ExceptionUtility.h
-        src/StringUtility.cpp
-        src/StringUtility.h
+        src/TypeUtility.cpp
+        src/TypeUtility.h
         src/LoggerUtility.cpp
         src/LoggerUtility.h
         src/DriverException.cpp
         src/DriverException.h
         src/HandleUtility.cpp
-        src/HandleUtility.h)
+        src/HandleUtility.h
+        src/Voice.cpp
+        src/Voice.h)

@@ -2,7 +2,7 @@
 
 DriverUtility::DriverUtility(JNIEnv *env, jobject object) {
   this->exceptionUtility = new ExceptionUtility(env);
-  this->stringUtility = new StringUtility(env);
+  this->stringUtility = new TypeUtility(env);
   this->loggerUtility = new LoggerUtility(env, object);
   this->handleUtility = new HandleUtility(loggerUtility);
 }
@@ -38,4 +38,12 @@ void DriverUtility::handleInitialize(HRESULT result) {
 
 void DriverUtility::handleCreateInstance(HRESULT result) {
   handleUtility->handleCreateInstance(result);
+}
+
+jobjectArray DriverUtility::mapVoices(std::vector<Voice> voices) {
+  return stringUtility->mapVoices(voices);
+}
+
+Voice DriverUtility::mapVoice(jobject jObject) {
+  return stringUtility->mapVoice(jObject);
 }

@@ -49,6 +49,22 @@ JNIEXPORT jshort JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdap
 
 /*
  * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
+ * Method:    setVoice
+ * Signature: (Lorthae/com/github/windowsspeech4j/Voice;)V
+ */
+JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_setVoice
+  (JNIEnv *, jobject, jobject);
+
+/*
+ * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
+ * Method:    getVoices
+ * Signature: ()[Lorthae/com/github/windowsspeech4j/Voice;
+ */
+JNIEXPORT jobjectArray JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_getVoices
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
  * Method:    speak
  * Signature: (Ljava/lang/String;)V
  */

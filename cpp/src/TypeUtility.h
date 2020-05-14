@@ -5,13 +5,17 @@
 #include <cstdlib>
 #include <cstring>
 #include <stdlib.h>
+#include <vector>
+#include "Voice.h"
 
-class StringUtility {
+class TypeUtility {
  private:
   JNIEnv *env;
  public:
-  StringUtility(JNIEnv *env);
+  TypeUtility(JNIEnv *env);
   std::wstring convertString(jstring javaString);
+  jobjectArray mapVoices(std::vector<Voice> voices);
+  Voice mapVoice(jobject jObject);
 };
 
 #endif

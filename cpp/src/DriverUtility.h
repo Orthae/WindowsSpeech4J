@@ -7,14 +7,14 @@
 #include "Constants.h"
 #include "ExceptionUtility.h"
 #include "HandleUtility.h"
-#include "StringUtility.h"
+#include "TypeUtility.h"
 #include "LoggerUtility.h"
 #include "DriverException.h"
 
 class DriverUtility {
  private:
   ExceptionUtility *exceptionUtility;
-  StringUtility *stringUtility;
+  TypeUtility *stringUtility;
   LoggerUtility *loggerUtility;
   HandleUtility *handleUtility;
  public:
@@ -27,6 +27,8 @@ class DriverUtility {
   std::wstring convertString(jstring javaString);
   void handleInitialize(HRESULT result);
   void handleCreateInstance(HRESULT result);
+  jobjectArray mapVoices(std::vector<Voice> voices);
+  Voice mapVoice(jobject jObject);
 };
 
 #endif
