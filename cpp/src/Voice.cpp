@@ -41,15 +41,6 @@ wstring Voice::getVersion() const {
   return version;
 }
 
-
-//this->gender = gender;
-//this->languageCode = languageCode;
-//this->name = name;
-//this->sharedPronunciation = sharedPronunciation;
-//this->vendor = vendor;
-//this->version = version;
-//this->voiceToken = voiceToken;
-
 ISpObjectToken *Voice::getVoiceToken() const {
   return voiceToken;
 }

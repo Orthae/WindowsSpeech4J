@@ -2,7 +2,6 @@
 #define WINDOWSSPEECH4J_SRC_HANDLE_H_
 
 #include <sapi.h>
-#include "Logger.h"
 #include "Constants.h"
 #include "DriverException.h"
 

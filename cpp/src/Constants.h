@@ -1,6 +1,8 @@
 #ifndef WINDOWSSPEECH4J_CONSTANTS_H
 #define WINDOWSSPEECH4J_CONSTANTS_H
 
+#include <string>
+
 class Constants {
  public:
   static inline std::string const CONSTRUCTOR_METHOD{"<init>"};
@@ -9,20 +11,8 @@ class Constants {
   static inline std::string const VOICE_SIGNATURE{
 	  "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"};
   static inline std::string const VOICE_CLASS{"orthae/com/github/windowsspeech4j/Voice"};
-  // Logger constants
-  static inline std::string const ADAPTER_LOG_INFO_SIGNATURE{
-	  "(Ljava/lang/String;)V"};
-  static inline std::string const ADAPTER_LOG_INFO_NAME{"info"};
-  static inline std::string const ADAPTER_LOG_WARN_SIGNATURE{
-	  "(Ljava/lang/String;)V"};
-  static inline std::string const ADAPTER_LOG_WARN_NAME{"warn"};
-  static inline std::string const ADAPTER_LOG_ERROR_SIGNATURE{
-	  "(Ljava/lang/String;)V"};
-  static inline std::string const ADAPTER_LOG_ERROR_NAME{"error"};
 
   //Logger messages
-  static inline std::string const INITIALIZE_SUCCESS{"COM interface has been initialized."};
-  static inline std::string const INITIALIZE_ALREADY{"COM interface was already initialized."};
   static inline std::string const
 	  INITIALIZE_INVALID{"COM interface received Invalid argument, this should not happen."};
   static inline std::string const INITIALIZE_MEMORY{"System ran out the memory while initializing COM interface."};
