@@ -15,17 +15,16 @@ class SpeechDriver {
   SpeechDriver();
   ~SpeechDriver();
   ISpVoice *spVoice;
-  std::vector<Voice> voices;
  public:
   void initialize();
   static SpeechDriver *getInstance();
   void setVolume(unsigned short volume);
   unsigned short getVolume();
-//  void setRate(short volume);
-//  short getRate();
-//  void setVoice(wstring hashString);
-//  jobjectArray getVoices();
-//  void speak(std::wstring textToSpeak);
+  void setRate(short volume);
+  short getRate();
+  void setVoice(size_t hash);
+  std::vector<Voice> getVoices();
+  void speak(std::wstring textToSpeak);
 };
 
 #endif

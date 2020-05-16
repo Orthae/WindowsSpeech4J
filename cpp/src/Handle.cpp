@@ -55,7 +55,7 @@ void Handle::handleSetVolume(HRESULT result) {
 	case S_OK: return;
 	case E_INVALIDARG:
 	  throw DriverException(Constants::EXCEPTION_INVALID_ARGUMENT,
-							Constants::VOICE_SET_VOLUME_INVALID_ARG);
+							Constants::SET_VOLUME_INVALID_ARG);
 	default: break;
   }
 }
@@ -65,7 +65,27 @@ void Handle::handleGetVolume(HRESULT result) {
 	case S_OK: return;
 	case E_POINTER:
 	  throw DriverException(Constants::EXCEPTION_NULL_ARGUMENT,
-							Constants::VOICE_GET_VOLUME_POINTER);
+							Constants::GET_VOLUME_POINTER);
+	default: break;
+  }
+}
+
+void Handle::handleSetRate(HRESULT result) {
+  switch (result) {
+	case S_OK: return;
+	case E_INVALIDARG:
+	  throw DriverException(Constants::EXCEPTION_INVALID_ARGUMENT,
+							Constants::SET_RATE_INVALID_ARG);
+	default: break;
+  }
+}
+
+void Handle::handleGetRate(HRESULT result) {
+  switch (result) {
+	case S_OK: return;
+	case E_POINTER:
+	  throw DriverException(Constants::EXCEPTION_NULL_ARGUMENT,
+							Constants::GET_RATE_POINTER);
 	default: break;
   }
 }

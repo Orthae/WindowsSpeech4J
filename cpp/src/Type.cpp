@@ -1,23 +1,18 @@
 #include <string>
 #include <iostream>
-#include "TypeUtility.h"
+#include "Type.h"
 #include "Constants.h"
 
-TypeUtility::TypeUtility(JNIEnv *env) {
-  this->env = env;
-}
-
-std::wstring TypeUtility::convertString(jstring javaString) {
+std::wstring Type::convertString(JNIEnv *env, jstring javaString) {
   std::wstring cppString;
   const jchar *javaChars = env->GetStringChars(javaString, nullptr);
-
   jsize stringLength = env->GetStringLength(javaString);
   cppString.assign(javaChars, javaChars + stringLength);
   env->ReleaseStringChars(javaString, javaChars);
   return cppString;
 }
 
-jobjectArray TypeUtility::mapVoices(std::vector<Voice> voices) {
+jobjectArray Type::mapVoices(JNIEnv *env, std::vector<Voice> voices) {
   jclass clazz = env->FindClass(Constants::VOICE_CLASS.c_str());
   jmethodID constructor = env->GetMethodID(clazz,
 										   Constants::CONSTRUCTOR_METHOD.c_str(),
@@ -58,7 +53,7 @@ jobjectArray TypeUtility::mapVoices(std::vector<Voice> voices) {
   return ret;
 }
 
-size_t TypeUtility::getVoiceHashCode(jstring hashString) {
+size_t Type::getVoiceHashCode(JNIEnv *env, jstring hashString) {
   std::wstring cppString;
   const jchar *javaChars = env->GetStringChars(hashString, nullptr);
   jsize stringLength = env->GetStringLength(hashString);

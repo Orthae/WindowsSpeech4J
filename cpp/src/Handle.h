@@ -12,6 +12,8 @@ class Handle {
   static void handleCreateInstance(HRESULT result);
   static void handleSetVolume(HRESULT result);
   static void handleGetVolume(HRESULT result);
+  static void handleSetRate(HRESULT result);
+  static void handleGetRate(HRESULT result);
 };
 
 #endif //WINDOWSSPEECH4J_SRC_HANDLE_H_
