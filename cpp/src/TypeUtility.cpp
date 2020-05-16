@@ -18,10 +18,10 @@ std::wstring TypeUtility::convertString(jstring javaString) {
 }
 
 jobjectArray TypeUtility::mapVoices(std::vector<Voice> voices) {
-  jclass clazz = env->FindClass("orthae/com/github/windowsspeech4j/Voice");
+  jclass clazz = env->FindClass(Constants::VOICE_CLASS.c_str());
   jmethodID constructor = env->GetMethodID(clazz,
 										   Constants::CONSTRUCTOR_METHOD.c_str(),
-										   "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+										   Constants::VOICE_SIGNATURE.c_str());
   jobjectArray ret = env->NewObjectArray(voices.size(), clazz, nullptr);
 
   for (size_t i = 0; i < voices.size(); i++) {
@@ -50,7 +50,6 @@ jobjectArray TypeUtility::mapVoices(std::vector<Voice> voices) {
 	std::wstring voiceHash = std::to_wstring(voices[i].getHashCode());
 	jstring hash = env->NewString(reinterpret_cast<const jchar *>(voiceHash.c_str()),
 								  voiceHash.length());
-
 	jobject obj =
 		env->NewObject(clazz, constructor, age, gender, languageCode, name,
 					   sharedPronunciation, vendor, version, hash);

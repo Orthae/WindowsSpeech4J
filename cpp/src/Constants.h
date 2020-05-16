@@ -5,6 +5,10 @@ class Constants {
  public:
   static inline std::string const CONSTRUCTOR_METHOD{"<init>"};
 
+  // Voice constants
+  static inline std::string const VOICE_SIGNATURE{
+	  "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"};
+  static inline std::string const VOICE_CLASS{"orthae/com/github/windowsspeech4j/Voice"};
   // Logger constants
   static inline std::string const ADAPTER_LOG_INFO_SIGNATURE{
 	  "(Ljava/lang/String;)V"};
@@ -35,6 +39,9 @@ class Constants {
   static inline std::string const INSTANCE_NULL{"Passed null as client pointer, this should not happen."};
   static inline std::string const
 	  INSTANCE_UNKNOWN{"Encountered unknown exception while creating speech client instance."};
+
+  static inline std::string const VOICE_SET_VOLUME_INVALID_ARG{
+    "Passed invalid argument to setVolume, this should not happen"};
 
   // Exception constants
   static inline std::string const EXCEPTION_CLASS{

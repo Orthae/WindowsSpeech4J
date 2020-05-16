@@ -5,30 +5,27 @@
 #include <sphelper.h>
 #include <mutex>
 #include <vector>
-#include "DriverUtility.h"
-#include "HandleUtility.h"
+#include "Handle.h"
 #include "Voice.h"
 
 class SpeechDriver {
  private:
-  DriverUtility *utility;
   static SpeechDriver *instance;
   static std::mutex mutex;
-  JNIEnv *env;
   SpeechDriver();
   ~SpeechDriver();
   ISpVoice *spVoice;
   std::vector<Voice> voices;
  public:
+  void initialize();
   static SpeechDriver *getInstance();
-  void initialize(JNIEnv *env, jobject object);
   void setVolume(unsigned short volume);
   unsigned short getVolume();
-  void setRate(short volume);
-  short getRate();
-  void setVoice(jstring hashString);
-  jobjectArray getVoices();
-  void speak(jstring textToSpeak);
+//  void setRate(short volume);
+//  short getRate();
+//  void setVoice(wstring hashString);
+//  jobjectArray getVoices();
+//  void speak(std::wstring textToSpeak);
 };
 
 #endif

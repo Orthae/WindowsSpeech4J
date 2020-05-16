@@ -7,6 +7,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /*
  * Class:     orthae_com_github_windowsspeech4j_SpeechDriverAdapter
  * Method:    initialize
