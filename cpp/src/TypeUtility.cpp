@@ -21,7 +21,7 @@ jobjectArray TypeUtility::mapVoices(std::vector<Voice> voices) {
   jclass clazz = env->FindClass("orthae/com/github/windowsspeech4j/Voice");
   jmethodID constructor = env->GetMethodID(clazz,
 										   Constants::CONSTRUCTOR_METHOD.c_str(),
-										   "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+										   "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
   jobjectArray ret = env->NewObjectArray(voices.size(), clazz, nullptr);
 
   for (size_t i = 0; i < voices.size(); i++) {
@@ -46,44 +46,24 @@ jobjectArray TypeUtility::mapVoices(std::vector<Voice> voices) {
 	jstring version =
 		env->NewString(reinterpret_cast<const jchar *>(voices[i].getVersion().c_str()),
 					   voices[i].getVersion().length());
+
+	std::wstring voiceHash = std::to_wstring(voices[i].getHashCode());
+	jstring hash = env->NewString(reinterpret_cast<const jchar *>(voiceHash.c_str()),
+								  voiceHash.length());
+
 	jobject obj =
-		env->NewObject(clazz, constructor, age, gender, languageCode, name, sharedPronunciation, vendor, version);
+		env->NewObject(clazz, constructor, age, gender, languageCode, name,
+					   sharedPronunciation, vendor, version, hash);
 	env->SetObjectArrayElement(ret, i, obj);
-  	std::cout << voices[i].getHashCode() <<std::endl;
   }
   return ret;
 }
 
-Voice TypeUtility::mapVoice(jobject jObject){
-  jclass clazz = env->FindClass("orthae/com/github/windowsspeech4j/Voice");
-
-  jfieldID jfAge =  env->GetFieldID(clazz, "age","Ljava/lang/String;");
-  jstring jAge = (jstring)env->GetObjectField(jObject, jfAge);
-  std::wstring age = convertString(jAge);
-
-  jfieldID jfGender =  env->GetFieldID(clazz, "gender","Ljava/lang/String;");
-  jstring jGender = (jstring)env->GetObjectField(jObject, jfGender);
-  std::wstring gender = convertString(jGender);
-
-  jfieldID jfLanguageCode =  env->GetFieldID(clazz, "languageCode","Ljava/lang/String;");
-  jstring jLanguageCode = (jstring)env->GetObjectField(jObject, jfLanguageCode);
-  std::wstring languageCode = convertString(jLanguageCode);
-
-  jfieldID jfName =  env->GetFieldID(clazz, "name","Ljava/lang/String;");
-  jstring jName = (jstring)env->GetObjectField(jObject, jfName);
-  std::wstring name = convertString(jName);
-
-  jfieldID jfSharedPronunciation =  env->GetFieldID(clazz, "sharedPronunciation","Ljava/lang/String;");
-  jstring jSharedPronunciation = (jstring)env->GetObjectField(jObject, jfSharedPronunciation);
-  std::wstring sharedPronunciation = convertString(jSharedPronunciation);
-
-  jfieldID jfVendor =  env->GetFieldID(clazz, "vendor","Ljava/lang/String;");
-  jstring jVendor = (jstring)env->GetObjectField(jObject, jfVendor);
-  std::wstring vendor = convertString(jVendor);
-
-  jfieldID jfVersion =  env->GetFieldID(clazz, "version","Ljava/lang/String;");
-  jstring jVersion = (jstring)env->GetObjectField(jObject, jfVersion);
-  std::wstring version = convertString(jVersion);
-
-  return Voice(age,gender,languageCode,name,sharedPronunciation,vendor,version, nullptr);
+size_t TypeUtility::getVoiceHashCode(jstring hashString) {
+  std::wstring cppString;
+  const jchar *javaChars = env->GetStringChars(hashString, nullptr);
+  jsize stringLength = env->GetStringLength(hashString);
+  cppString.assign(javaChars, javaChars + stringLength);
+  env->ReleaseStringChars(hashString, javaChars);
+  return std::stoull(cppString);
 }

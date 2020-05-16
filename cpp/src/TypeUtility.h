@@ -15,7 +15,7 @@ class TypeUtility {
   TypeUtility(JNIEnv *env);
   std::wstring convertString(jstring javaString);
   jobjectArray mapVoices(std::vector<Voice> voices);
-  Voice mapVoice(jobject jObject);
+  size_t getVoiceHashCode(jstring hashString);
 };
 
 #endif

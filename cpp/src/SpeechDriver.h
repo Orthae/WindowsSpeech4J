@@ -26,7 +26,7 @@ class SpeechDriver {
   unsigned short getVolume();
   void setRate(short volume);
   short getRate();
-  void setVoice(jobject voice);
+  void setVoice(jstring hashString);
   jobjectArray getVoices();
   void speak(jstring textToSpeak);
 };

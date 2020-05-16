@@ -89,10 +89,10 @@ jobjectArray SpeechDriver::getVoices(){
   return utility->mapVoices(vector);
 }
 
-void SpeechDriver::setVoice(jobject jobject){
-  Voice voice = utility->mapVoice(jobject);
-  for(Voice &v : voices){
-    if(v.getHashCode() == voice.getHashCode() ){
+void SpeechDriver::setVoice(jstring hashString){
+  size_t hash = utility->getVoiceHashCode(hashString);
+  for(Voice &v : voices) {
+    if(v.getHashCode() == hash ){
       spVoice->SetVoice(v.getVoiceToken());
       return;
     }

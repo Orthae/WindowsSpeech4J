@@ -1,3 +1,4 @@
+#include <iostream>
 #include "orthae_com_github_windowsspeech4j_SpeechDriverAdapter.h"
 #include "SpeechDriver.h"
 
@@ -37,6 +38,6 @@ JNIEXPORT jobjectArray JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriv
 }
 
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_setVoice
-	(JNIEnv *, jobject, jobject object){
-  SpeechDriver::getInstance()->setVoice(object);
+	(JNIEnv *, jobject, jstring voiceHash){
+  SpeechDriver::getInstance()->setVoice(voiceHash);
 };

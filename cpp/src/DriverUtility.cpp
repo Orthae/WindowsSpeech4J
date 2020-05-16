@@ -44,6 +44,6 @@ jobjectArray DriverUtility::mapVoices(std::vector<Voice> voices) {
   return stringUtility->mapVoices(voices);
 }
 
-Voice DriverUtility::mapVoice(jobject jObject) {
-  return stringUtility->mapVoice(jObject);
+size_t DriverUtility::getVoiceHashCode(jstring hashString) {
+  return stringUtility->getVoiceHashCode(hashString);
 }

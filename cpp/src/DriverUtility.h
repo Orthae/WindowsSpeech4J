@@ -28,7 +28,7 @@ class DriverUtility {
   void handleInitialize(HRESULT result);
   void handleCreateInstance(HRESULT result);
   jobjectArray mapVoices(std::vector<Voice> voices);
-  Voice mapVoice(jobject jObject);
+  size_t getVoiceHashCode(jstring hashString);
 };
 
 #endif
