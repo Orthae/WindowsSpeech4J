@@ -39,11 +39,18 @@ void SpeechDriver::setVolume(unsigned short volume) {
   Handle::handleSetVolume(result);
 }
 
+/**
+ * Gets volume of the speech
+ * @return volume
+ * @link https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ee125012(v=vs.85)
+ */
 unsigned short SpeechDriver::getVolume() {
   unsigned short volume{0};
   HRESULT result = spVoice->GetVolume(&volume);
+  Handle::handleGetVolume(result);
   return volume;
 }
+
 //
 //void SpeechDriver::setRate(short rate){
 //  HRESULT result = spVoice->SetRate(rate);

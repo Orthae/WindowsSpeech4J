@@ -59,3 +59,13 @@ void Handle::handleSetVolume(HRESULT result) {
 	default: break;
   }
 }
+
+void Handle::handleGetVolume(HRESULT result) {
+  switch (result) {
+	case S_OK: return;
+	case E_POINTER:
+	  throw DriverException(Constants::EXCEPTION_NULL_ARGUMENT,
+							Constants::VOICE_GET_VOLUME_POINTER);
+	default: break;
+  }
+}

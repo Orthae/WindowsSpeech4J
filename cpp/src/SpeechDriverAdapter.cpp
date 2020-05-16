@@ -10,20 +10,29 @@ JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapte
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_initialize
 	(JNIEnv *env, jobject object) {
   try {
-    SpeechDriver::getInstance()->initialize();
-	 } catch (DriverException &exception) {
+	SpeechDriver::getInstance()->initialize();
+  } catch (DriverException &exception) {
 	Exception::throwException(env, exception);
   }
 }
 
 JNIEXPORT jshort JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_getVolume
-	(JNIEnv *, jobject) {
-  return SpeechDriver::getInstance()->getVolume();
+	(JNIEnv *env, jobject) {
+  try {
+	return SpeechDriver::getInstance()->getVolume();
+  } catch (DriverException &exception) {
+	Exception::throwException(env, exception);
+  }
+  return 0;
 }
 
 JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_setVolume
-	(JNIEnv *, jobject, jshort volume) {
-  SpeechDriver::getInstance()->setVolume(volume);
+	(JNIEnv *env, jobject, jshort volume) {
+  try {
+	SpeechDriver::getInstance()->setVolume(volume);
+  } catch (DriverException &exception) {
+	Exception::throwException(env, exception);
+  }
 }
 
 //JNIEXPORT void JNICALL Java_orthae_com_github_windowsspeech4j_SpeechDriverAdapter_speak

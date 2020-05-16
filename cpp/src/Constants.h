@@ -41,7 +41,9 @@ class Constants {
 	  INSTANCE_UNKNOWN{"Encountered unknown exception while creating speech client instance."};
 
   static inline std::string const VOICE_SET_VOLUME_INVALID_ARG{
-    "Passed invalid argument to setVolume, this should not happen"};
+	  "Passed invalid argument to setVolume, this should not happen"};
+  static inline std::string const VOICE_GET_VOLUME_POINTER{
+	  "Failed to get speech volume, volume pointer is null, this should not happen"};
 
   // Exception constants
   static inline std::string const EXCEPTION_CLASS{
