@@ -19,7 +19,7 @@ class LibraryLoader {
     }
   }
 
-  public void loadDriver() throws IOException {
+  public void loadLibrary() throws IOException {
     final String libraryName = "WindowsSpeech4J.dll";
     final Path libraryPath = getLibraryPath(libraryName);
     InputStream stream = getResourceAsStream(libraryName);

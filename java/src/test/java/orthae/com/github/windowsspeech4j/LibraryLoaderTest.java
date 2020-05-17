@@ -49,7 +49,7 @@ class LibraryLoaderTest {
     doNothing().when(libraryLoader).extractLibrary(libPath, libStream);
     doNothing().when(libraryLoader).loadLibrary(libPath);
 
-    libraryLoader.loadDriver();
+    libraryLoader.loadLibrary();
 
     verify(libraryLoader, times(1)).getLibraryPath(libName);
     verify(libraryLoader, times(1)).getResourceAsStream(libName);
