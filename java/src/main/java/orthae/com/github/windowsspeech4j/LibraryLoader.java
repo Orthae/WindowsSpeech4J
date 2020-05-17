@@ -13,14 +13,10 @@ class LibraryLoader {
   public void validateSystemVersion() {
     final String systemName = getSystemName();
     if (!systemName.contains("Windows 10") && !systemName.contains("Windows 8.1") &&
-        !systemName.contains("Windows 8") && !systemName.contains("Windows 7") &&
-        !systemName.contains("Windows Vista")) {
+            !systemName.contains("Windows 8") && !systemName.contains("Windows 7") &&
+            !systemName.contains("Windows Vista")) {
       throw new SpeechDriverException(0, "System is not supported");
     }
-  }
-
-  public String getSystemName() {
-    return System.getProperty("os.name");
   }
 
   public void loadDriver() throws IOException {
@@ -46,6 +42,10 @@ class LibraryLoader {
 
   public void deleteExisting(Path libraryPath) throws IOException {
     Files.deleteIfExists(libraryPath);
+  }
+
+  public String getSystemName() {
+    return System.getProperty("os.name");
   }
 
   public InputStream getResourceAsStream(String libraryName) {
