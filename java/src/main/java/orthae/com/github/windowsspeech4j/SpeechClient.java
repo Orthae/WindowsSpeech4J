@@ -1,11 +1,13 @@
 package orthae.com.github.windowsspeech4j;
 
+import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import orthae.com.github.windowsspeech4j.exception.SpeechDriverException;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class SpeechClient {
@@ -61,5 +63,16 @@ public class SpeechClient {
     return speechDriver.getRate();
   }
 
+  public void setVoice(Voice voice) {
+    if (voice == null) {
+      logger.error("Voice can't be null");
+    } else {
+      speechDriver.setVoice(voice.getVoiceHash());
+    }
+  }
+
+  public List<Voice> getVoices(){
+    return Arrays.asList(speechDriver.getVoices());
+  }
 
 }

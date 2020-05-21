@@ -1,5 +1,6 @@
 package orthae.com.github.windowsspeech4j;
 
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +9,7 @@ import orthae.com.github.windowsspeech4j.exception.SpeechDriverException;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -127,4 +129,38 @@ class SpeechClientTest {
     verify(adapter, times(1)).getRate();
     assertEquals(rate, result);
   }
+
+  @ParameterizedTest
+  @ValueSource(strings = {"AA", "BB", "CC", "DD", "EE"})
+  void setVoice(String hash){
+    final Voice voice = mock(Voice.class);
+    when(voice.getVoiceHash()).thenReturn(hash);
+
+    client.setVoice(voice);
+
+    verify(adapter, times(1)).setVoice(hash);
+  }
+
+  @Test
+  void setVoiceNull(){
+    client.setVoice(null);
+
+    verify(adapter, never()).setVoice(anyString());
+  }
+
+  @Test
+  void getVoices(){
+    final Voice v1 = mock(Voice.class);
+    final Voice v2 = mock(Voice.class);
+    final Voice v3 = mock(Voice.class);
+    final Voice[] voices = new Voice[]{v1, v2 ,v3};
+    when(adapter.getVoices()).thenReturn(voices);
+
+    final List<Voice> result = client.getVoices();
+
+    assertNotNull(result);
+    assertArrayEquals(voices, result.toArray());
+  }
+
+
 }
