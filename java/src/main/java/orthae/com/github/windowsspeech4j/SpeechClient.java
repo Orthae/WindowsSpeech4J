@@ -71,8 +71,16 @@ public class SpeechClient {
     }
   }
 
-  public List<Voice> getVoices(){
+  public List<Voice> getVoices() {
     return Arrays.asList(speechDriver.getVoices());
+  }
+
+  public void speak(String text) {
+    if (text == null || text.isEmpty()) {
+      logger.error("Text can't be null or empty");
+    } else {
+      speechDriver.speak(text);
+    }
   }
 
 }

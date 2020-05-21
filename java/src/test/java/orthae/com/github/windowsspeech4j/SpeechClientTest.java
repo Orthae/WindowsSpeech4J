@@ -1,6 +1,5 @@
 package orthae.com.github.windowsspeech4j;
 
-import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -162,5 +161,26 @@ class SpeechClientTest {
     assertArrayEquals(voices, result.toArray());
   }
 
+  @Test
+  void speak(){
+    final String text = "Test";
 
+    client.speak(text);
+
+    verify(adapter, times(1)).speak(text);
+  }
+
+  @Test
+  void speakEmpty(){
+    client.speak("");
+
+    verify(adapter, never()).speak(anyString());
+  }
+
+  @Test
+  void speakNull(){
+    client.speak(null);
+
+    verify(adapter, never()).speak(anyString());
+  }
 }
